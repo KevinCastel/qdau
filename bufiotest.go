@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	cmd := exec.Command("go", "run", "./quadD.go")
+	cmd := exec.Command("go", "run", "./quadA.go")
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Println("Erreur lors de l'exécution:", err)
@@ -20,7 +20,7 @@ func main() {
 		Ma partie en bas
 	*/
 
-	lineLength := 0
+	lineLength := -1
 	countLine := 0
 	isLineLengthFound := false
 
