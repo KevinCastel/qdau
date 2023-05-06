@@ -1,119 +1,41 @@
-// go 1.10.4
 package main
 
-<<<<<<< HEAD
-import ("fmt"
-       "os"
-       "strconv")
-
-=======
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
->>>>>>> ffbcd76 (Replacing for the arguments catch-up)
 
 func main() {
-	args := os.Args
-	if len(args) >= 2 {
-		m := GetArgs(args[1:])
-		fmt.Println(m)
-	} else {
-		fmt.Println("Not a quad function")
-	}
-}
+	// arg := os.Args[0]
 
-<<<<<<< HEAD
+	read, _ := bufio.NewReader(os.Stdin).ReadString(100)
 
-func GetArgs(a[]string) map[string]int{
-  /*
-    Itere tous les arguments afin d'y
-    recuperer les noms de fichier et les
-    valeurs
-  */
-  mapQuadInformation := map[string]int{}
-  isLastWasInt := false
-  key := ""
-  intStr := ""
-  for _, i := range a{
-    if IsInt(i){
-      if isLastWasInt{
-        isLastWasInt = false
-        fmt.Println("Ajout de la cle ", key)
-        ass, err := strconv.Atoi(intStr)
-        if err != nil{
-          
-        } else {
-          fmt.Println("Une erreur a etait tdouve")
-        }
-        mapQuadInformation[key] = ass
-        intStr = ""
-        key = ""
-      }
-      key += string(i)
-    } else {
-      intStr += string(i)
-      isLastWasInt = true
-      
-    }
-    fmt.Println(i)
-  }
-  return mapQuadInformation
-=======
-func GetArgs(a []string) map[string][]int {
-	/*
-	   Itere tous les arguments afin d'y
-	   recuperer les noms de fichier et les
-	   valeurs
-	*/
-	mapQuadInformation := map[string][]int{}
-	letters := ""
-	numeric := ""
-	for _, i := range a {
-		for _, c := range []rune(i) {
-			fmt.Println("c:'", string(c), "'")
-			if c > 'a' && c <= 'z' || c >= 'A' && c <= 'Z' {
-				letters += string(c)
-			} else if c >= '0' && c <= '9' {
-				numeric += string(c)
-			}
+	// ./QuadA 6 5 | go run .
+
+	// out, _, _ := bufio.NewReader(os.Stdout).ReadLine()
+	// fmt.Println(arg)
+	arr := []string{}
+	r := []rune(read)
+
+	start := 0
+
+	for i, ru := range r {
+		if ru == '\n' {
+			arr = append(arr, string(r[start:i]))
+			start = i + 1
 		}
 	}
-	return mapQuadInformation
->>>>>>> ffbcd76 (Replacing for the arguments catch-up)
-}
 
-func IsInt(s string) bool {
+	fmt.Printf("Square of size [%d;%d]\n\n", len(arr[0]), len(arr))
+
+	fmt.Println(string(read))
+	// fmt.Println(err)
+
 	/*
-	   Appelé pour vérifier si
-	   la chaine de caractere
-	   contient des nombres.
-	   Si slle ne contient pas
-	   de nombres, c'est considere
-	   comme un nom de fichier
-	*/
-	isInt := true
-	for _, c := range s {
-		if c < '0' || c > '9' {
-			isInt = false
-		}
-	}
-	return isInt
-}
+	   out, err := exec.Command("/home/student/zone01/quadchecker/word").Output()
 
-func RemoveSpaceInString(s string) string {
-	newString := ""
-	a := []rune(s)
-	for _, c := range a {
-		if c >= '0' && c <= '9' {
-			newString += string(c)
-		}
-	}
-	return newString
-}
-
-func quadchecker() {
-	/*
-	   Exercice function
+	   fmt.Println(out)
+	   fmt.Println(err)
 	*/
 }
