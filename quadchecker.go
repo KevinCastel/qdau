@@ -3,7 +3,8 @@
 package main
 
 import ("fmt"
-       "os")
+       "os"
+       "strconv")
 
 
 func main() {
@@ -26,13 +27,25 @@ func GetArgs(a[]string) map[string]int{
   mapQuadInformation := map[string]int{}
   isLastWasInt := false
   key := ""
+  intStr := ""
   for _, i := range a{
     if IsInt(i){
       if isLastWasInt{
         isLastWasInt = false
+        fmt.Println("Ajout de la cle ", key)
+        ass, err := strconv.Atoi(intStr)
+        if err != nil{
+          
+        } else {
+          fmt.Println("Une erreur a etait tdouve")
+        }
+        mapQuadInformation[key] = ass
+        intStr = ""
+        key = ""
       }
       key += string(i)
     } else {
+      intStr += string(i)
       isLastWasInt = true
       
     }
